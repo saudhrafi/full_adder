@@ -1,0 +1,24 @@
+// ===============================
+// Full Adder + Full Subtractor
+// Combined in one Verilog Code
+// ===============================
+
+module full_adder_subtractor (
+    input  wire A,
+    input  wire B,
+    input  wire Cin,     // Acts as Carry-in for adder and Borrow-in for subtractor
+    output wire Sum,
+    output wire Cout,
+    output wire Diff,
+    output wire Bout
+);
+
+    // -------- Full Adder Logic --------
+    assign Sum  = A ^ B ^ Cin;                          // Sum Output
+    assign Cout = (A & B) | (B & Cin) | (A & Cin);      // Carry Output
+
+    // -------- Full Subtractor Logic --------
+    assign Diff = A ^ B ^ Cin;                          // Difference Output
+    assign Bout = (~A & B) | (B & Cin) | (~A & Cin);    // Borrow Output
+
+endmodule
